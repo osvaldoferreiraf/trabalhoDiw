@@ -132,56 +132,34 @@
         <hr>
 
         <!-- plataformas -->
-        <div class="container-fluid" id="plataformas">
-            <div class="row" id="conteudoplataforma">
-                <h1 style="text-align: center; padding-top: 20px; padding-bottom: 20px;">Plataformas</h1>
-                <div class="card col-md-3" style="width: 30rem; margin: 20px">
-                    <img src="./ps5.webp" class="card-img-top" alt="..." style="height: 250px">
-                    <div class="card-body">
-                        <h3 class="card-title" style="text-align: center;">PlayStation 5</h3>
-                        <br>
-                        <h5 class="card-title">Itens populares</h5>
-                        <hr>
-                        <h5 class="card-title">Grand Theft Auto V</h5>
-                        <h5 class="card-title">The Witcher 3: Wild Hunt</h5>
-                        <h5 class="card-title">Portal 2</h5>
-                        <br>
-                        <a href="https://rawg.io/games/playstation5" target="_blank" class="btn btn-primary">Mais
-                            detalhes</a>
-                    </div>
-                </div>
-                <div class="card col-md-3" style="width: 30rem; margin: 20px">
-                    <img src="./xbox.jpg" class="card-img-top" alt="..." style="height: 250px">
-                    <div class="card-body">
-                        <h3 class="card-title" style="text-align: center;">Xbox 360</h3>
-                        <br>
-                        <h5 class="card-title">Itens populares</h5>
-                        <hr>
-                        <h5 class="card-title">Grand Theft Auto V</h5>
-                        <h5 class="card-title">Portal 2</h5>
-                        <h5 class="card-title">Tomb Raider (2013)</h5>
-                        <br>
-                        <a href="https://rawg.io/games/xbox360" target="_blank" class="btn btn-primary">Mais
-                            detalhes</a>
-                    </div>
-                </div>
-                <div class="card col-md-3" style="width: 30rem; margin: 20px">
-                    <img src="./nitendo.webp" class="card-img-top" alt="..." style="height: 250px">
-                    <div class="card-body">
-                        <h3 class="card-title" style="text-align: center;">Nintendo 3DS</h3>
-                        <br>
-                        <h5 class="card-title">Itens populares</h5>
-                        <hr>
-                        <h5 class="card-title">Terraria</h5>
-                        <h5 class="card-title">Minecraft</h5>
-                        <h5 class="card-title">LEGO The Lord of the Rings</h5>
-                        <br>
-                        <a href="https://rawg.io/games/nintendo-3ds" target="_blank" class="btn btn-primary">Mais
-                            detalhes</a>
-                    </div>
+        <section class="lancamentos" id="lancamentos" style="background-color:rgb(255, 255, 255)">
+            <h1 style="text-align: center; padding-top: 20px; padding-bottom: 20px;">Plataformas</h1>
+            <div class="container-fluid">
+                <div class="row" id="conteudoPlataforma">
                 </div>
             </div>
-        </div>
+            <script>
+                fetch('https://api.rawg.io/api/platforms?key=d1e6a3c606af47438fa9455b8ccfcf02')
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('Imprimindo jogos')
+                        let str = ''
+                        for (let i = 5; i < 10; i++) {
+                            let plataforma = data.results[i]
+                            str += `<div class="card col-md-4" style="width: 18rem; margin: 20px">
+                    <img src="${plataforma.image_background}" class="card-img-top" alt="..." style="height: 200px">
+                    <div class="card-body">
+                        <h5 class="card-title">${plataforma.name}</h5>
+                        
+                        <a href="https://rawg.io/games/${plataforma.id}" target="_blank" class="btn btn-primary">Mais detalhes</a>
+                    </div>
+                    </div>`
+                        }
+                        document.getElementById('conteudoPlataforma').innerHTML = str
+                    })
+
+            </script>
+        </section>
 
         <hr>
 
